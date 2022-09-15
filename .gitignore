@@ -356,3 +356,8 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 .idea
+
+# Misc
+~*
+*.dia
+*.dia.*

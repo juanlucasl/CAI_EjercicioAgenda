@@ -7,8 +7,8 @@
         <ProjectGuid>{CD3D9F40-E55B-4400-B3AB-2B9891125542}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>ProyectoAgenda.Entidades</RootNamespace>
-        <AssemblyName>ProyectoAgenda.Entidades</AssemblyName>
+        <RootNamespace>ProyectoAgenda.Servicios</RootNamespace>
+        <AssemblyName>ProyectoAgenda.Servicios</AssemblyName>
         <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <Deterministic>true</Deterministic>
@@ -39,8 +39,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Agenda.cs" />
-        <Compile Include="Contacto.cs" />
+        <Compile Include="Entities\Agenda.cs" />
+        <Compile Include="Entities\Contacto.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoAgenda.InterfazConsola", "ProyectoAgenda.InterfazConsola\ProyectoAgenda.InterfazConsola.csproj", "{3EB530B4-6F88-4EB0-BA7C-FF265C4C8126}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoAgenda.Entidades", "ProyectoAgenda.Entidades\ProyectoAgenda.Entidades.csproj", "{CD3D9F40-E55B-4400-B3AB-2B9891125542}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoAgenda.Servicios", "ProyectoAgenda.Servicios\ProyectoAgenda.Servicios.csproj", "{CD3D9F40-E55B-4400-B3AB-2B9891125542}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

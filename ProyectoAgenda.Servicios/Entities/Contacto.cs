@@ -1,6 +1,6 @@
 using System;
 
-namespace ProyectoAgenda.Entidades
+namespace ProyectoAgenda.Servicios.Entities
 {
     public class Contacto
     {
@@ -16,10 +16,10 @@ namespace ProyectoAgenda.Entidades
         }
 
         // Atributos
-        private string _nombre;
-        private string _apellido;
-        private string _telefono;
-        private string _direccion;
+        private readonly string _nombre;
+        private readonly string _apellido;
+        private readonly string _telefono;
+        private readonly string _direccion;
         private DateTime _fechaNacimiento;
         private int _llamadas;
 
@@ -50,13 +50,24 @@ namespace ProyectoAgenda.Entidades
         }
 
         // Metodos
+        public override string ToString()
+        {
+            return $"{_nombre} {_apellido} ({Edad()} años)\n{_telefono}\n{_direccion}";
+        }
+
+        /// <summary> Devuelve la edad del contacto.</summary>
+        /// <returns type="int">Edad del contacto</returns>
         public int Edad()
         {
-            return 0;
+            int age = DateTime.Today.Year - _fechaNacimiento.Year;
+            if (DateTime.Today < _fechaNacimiento.AddYears(age)) age--;
+
+            return age;
         }
 
         public void Llamar()
         {
+            _llamadas++;
         }
     }
 }
