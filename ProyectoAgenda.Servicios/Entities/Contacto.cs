@@ -34,35 +34,26 @@ namespace ProyectoAgenda.Servicios.Entities
             get { return _apellido; }
         }
 
-        public string Direccion
-        {
-            get { return _direccion; }
-        }
-
-        public string Telefono
-        {
-            get { return _telefono; }
-        }
-
         public int Llamadas
         {
             get { return _llamadas; }
         }
 
+        private int Edad
+        {
+            get
+            {
+                int age = DateTime.Today.Year - _fechaNacimiento.Year;
+                if (DateTime.Today < _fechaNacimiento.AddYears(age)) age--;
+
+                return age;
+            }
+        }
+
         // Metodos
         public override string ToString()
         {
-            return $"{_nombre} {_apellido} ({Edad()} años)\n{_telefono}\n{_direccion}";
-        }
-
-        /// <summary> Devuelve la edad del contacto.</summary>
-        /// <returns type="int">Edad del contacto</returns>
-        public int Edad()
-        {
-            int age = DateTime.Today.Year - _fechaNacimiento.Year;
-            if (DateTime.Today < _fechaNacimiento.AddYears(age)) age--;
-
-            return age;
+            return $"{_nombre} {_apellido} ({Edad} años)\n{_telefono}\n{_direccion}";
         }
 
         public void Llamar()

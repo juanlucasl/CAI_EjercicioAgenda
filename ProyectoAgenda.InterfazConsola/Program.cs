@@ -9,7 +9,7 @@ namespace ProyectoAgenda.InterfazConsola
         public static void Main()
         {
             int opcionMenu;
-            Agenda agenda = new Agenda("Agenda", "agenda", 10);
+            Agenda agenda = new Agenda("Agenda", "agenda", 100);
 
             do
             {
@@ -60,6 +60,12 @@ namespace ProyectoAgenda.InterfazConsola
 
                     case 3: // Agregar contacto
                     {
+                        if (agenda.Contactos.Count() >= agenda.CantidadMaximaContactos)
+                        {
+                            InputHelper.PedirContinuacion("Agenda llena");
+                            break;
+                        }
+
                         string nombre = InputHelper.PedirString("Ingresar nombre:");
                         string apellido = InputHelper.PedirString("Ingresar apellido:");
                         string telefono = InputHelper.PedirString("Ingresar telefono:");
@@ -67,9 +73,18 @@ namespace ProyectoAgenda.InterfazConsola
                         DateTime fechaNacimiento = InputHelper.PedirStringFecha("Ingresar fecha de nacimiento:");
 
                         Contacto nuevoContacto = new Contacto(nombre, apellido, telefono, direccion, fechaNacimiento);
-                        agenda.AgregarContacto(nuevoContacto);
 
-                        InputHelper.PedirContinuacion("Contacto agregado");
+                        try
+                        {
+                            agenda.AgregarContacto(nuevoContacto);
+                            Console.WriteLine("Contacto agregado");
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Agenda llena");
+                        }
+
+                        InputHelper.PedirContinuacion();
                         break;
                     }
 

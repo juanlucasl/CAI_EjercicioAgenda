@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ProyectoAgenda.Servicios.Entities
 {
@@ -46,8 +45,10 @@ namespace ProyectoAgenda.Servicios.Entities
 
         /// <summary>Recibe un contacto y lo agrega a la lista de contactos de la agenda.</summary>
         /// <param name="contacto" type="Contacto">Contacto a agregar</param>
+        /// <exception cref="InvalidOperationException">Si se alcanzo la cantidad maxima de contactos.</exception>
         public void AgregarContacto(Contacto contacto)
         {
+            if (_contactos.Count >= _cantidadMaximaContactos) throw new InvalidOperationException();
             _contactos.Add(contacto);
         }
 
