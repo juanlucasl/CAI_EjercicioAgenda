@@ -1,64 +1,39 @@
-using System;
+using System.Threading;
 
 namespace ProyectoAgenda.Servicios.Entities
 {
-    public class Contacto
+    public abstract class Contacto
     {
         // Constructor
-        public Contacto(string nombre, string apellido, string telefono, string direccion, DateTime fechaNacimiento)
+        protected Contacto(string direccion)
         {
-            _nombre = nombre;
-            _apellido = apellido;
-            _telefono = telefono;
+            _codigo = Interlocked.Increment(ref _codigoContador);
             _direccion = direccion;
-            _fechaNacimiento = fechaNacimiento;
             _llamadas = 0;
         }
 
         // Atributos
-        private readonly string _nombre;
-        private readonly string _apellido;
-        private readonly string _telefono;
+        private static int _codigoContador = 0;
+        private readonly int _codigo;
         private readonly string _direccion;
-        private DateTime _fechaNacimiento;
         private int _llamadas;
 
         // Propiedades
-        public string Nombre
-        {
-            get { return _nombre; }
-        }
-
-        public string Apellido
-        {
-            get { return _apellido; }
-        }
-
         public int Llamadas
         {
             get { return _llamadas; }
+            private set { _llamadas = value; }
         }
 
-        private int Edad
+        protected string Direccion
         {
-            get
-            {
-                int age = DateTime.Today.Year - _fechaNacimiento.Year;
-                if (DateTime.Today < _fechaNacimiento.AddYears(age)) age--;
-
-                return age;
-            }
+            get { return _direccion; }
         }
 
         // Metodos
-        public override string ToString()
-        {
-            return $"{_nombre} {_apellido} ({Edad} años)\n{_telefono}\n{_direccion}";
-        }
-
         public void Llamar()
         {
-            _llamadas++;
+            Llamadas++;
         }
     }
 }

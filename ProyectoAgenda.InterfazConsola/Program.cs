@@ -32,7 +32,7 @@ namespace ProyectoAgenda.InterfazConsola
                         int i = 1;
                         foreach (Contacto contacto in agenda.Contactos)
                         {
-                            Console.WriteLine($"{i}- {contacto.ToString()}\n");
+                            Console.WriteLine($"{i}- {contacto}");
                             i++;
                         }
 
@@ -70,9 +70,10 @@ namespace ProyectoAgenda.InterfazConsola
                         string apellido = InputHelper.PedirString("Ingresar apellido:");
                         string telefono = InputHelper.PedirString("Ingresar telefono:");
                         string direccion = InputHelper.PedirString("Ingresar direccion:");
-                        DateTime fechaNacimiento = InputHelper.PedirStringFecha("Ingresar fecha de nacimiento:");
+                        DateTime fechaNacimiento = InputHelper.PedirStringFecha("Ingresar fecha de nacimiento (dia/mes/ano):");
 
-                        Contacto nuevoContacto = new Contacto(nombre, apellido, telefono, direccion, fechaNacimiento);
+                        Contacto nuevoContacto =
+                            new ContactoPersona(nombre, apellido, telefono, direccion, fechaNacimiento);
 
                         try
                         {
@@ -116,7 +117,7 @@ namespace ProyectoAgenda.InterfazConsola
                         {
                             Contacto contacto = agenda.TraerContactoPorPosicion(i);
                             contacto.Llamar();
-                            Console.WriteLine($"Contacto {contacto.Nombre} {contacto.Apellido} llamado");
+                            Console.WriteLine($"Contacto {contacto}llamado");
                         }
                         catch (Exception e)
                         {

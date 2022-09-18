@@ -62,8 +62,8 @@ namespace ProyectoAgenda.Servicios.Entities
         }
 
         /// <summary>
-        /// Devuelve el contacto con la cantidad de llamadas mas alta. Si hay mas de un contacto con la mmisma
-        /// cantidad, devuelve el que este primero en la lista.
+        /// Devuelve el contacto con la cantidad de llamadas mas alta. Si hay mas de un contacto con la misma cantidad,
+        /// devuelve el que este primero en la lista.
         /// </summary>
         /// <returns>Contacto con la mayor cantidad de llamadas</returns>
         public Contacto TraerContactoFrecuente()
