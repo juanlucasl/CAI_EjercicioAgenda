@@ -41,6 +41,7 @@
     <ItemGroup>
         <Compile Include="Entities\Agenda.cs" />
         <Compile Include="Entities\Contacto.cs" />
+        <Compile Include="Entities\ContactoEmpresa.cs" />
         <Compile Include="Entities\ContactoPersona.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

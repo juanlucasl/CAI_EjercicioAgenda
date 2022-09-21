@@ -5,7 +5,7 @@ namespace ProyectoAgenda.Servicios.Entities
     public class ContactoPersona : Contacto
     {
         // Constructor
-        public ContactoPersona(string nombre, string apellido, string telefono, string direccion, DateTime fechaNacimiento) : base(direccion)
+        public ContactoPersona(string nombre, string apellido, string telefono, string direccion, DateTime fechaNacimiento) : base(direccion, fechaNacimiento)
         {
             _nombre = nombre;
             _apellido = apellido;
@@ -20,31 +20,15 @@ namespace ProyectoAgenda.Servicios.Entities
         private DateTime _fechaNacimiento;
 
         // Propiedades
-        public string Nombre
-        {
-            get { return _nombre; }
-        }
-
-        public string Apellido
-        {
-            get { return _apellido; }
-        }
-
         private int Edad
         {
-            get
-            {
-                int age = DateTime.Today.Year - _fechaNacimiento.Year;
-                if (DateTime.Today < _fechaNacimiento.AddYears(age)) age--;
-
-                return age;
-            }
+            get { return FechaDiff(); }
         }
 
         // Metodos
         public override string ToString()
         {
-            return $"{_nombre} {_apellido} ({Edad} años)\n{_telefono}\n{Direccion}\n";
+            return $"Persona: {_nombre} {_apellido} ({Edad} años)\n{_telefono}\n{Direccion}\n";
         }
     }
 }
