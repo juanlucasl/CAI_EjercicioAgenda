@@ -6,9 +6,10 @@ namespace ProyectoAgenda.Servicios.Entities
     public abstract class Contacto
     {
         // Constructor
-        protected Contacto(string direccion, DateTime fechaConcepcion)
+        protected Contacto(string telefono, string direccion, DateTime fechaConcepcion)
         {
             _codigo = Interlocked.Increment(ref _codigoContador);
+            _telefono = telefono;
             _direccion = direccion;
             _fechaConcepcion = fechaConcepcion;
             _llamadas = 0;
@@ -17,6 +18,7 @@ namespace ProyectoAgenda.Servicios.Entities
         // Atributos
         private static int _codigoContador = 0;
         private readonly int _codigo;
+        private readonly string _telefono;
         private readonly string _direccion;
         private readonly DateTime _fechaConcepcion;
         private int _llamadas;
@@ -26,6 +28,11 @@ namespace ProyectoAgenda.Servicios.Entities
         {
             get { return _llamadas; }
             private set { _llamadas = value; }
+        }
+
+        protected string Telefono
+        {
+            get { return _telefono; }
         }
 
         protected string Direccion

@@ -5,15 +5,13 @@ namespace ProyectoAgenda.Servicios.Entities
     public class ContactoEmpresa : Contacto
     {
         // Constructor
-        public ContactoEmpresa(string razonSocial, string telefono, string direccion, DateTime fechaConstitucion) : base(direccion, fechaConstitucion)
+        public ContactoEmpresa(string razonSocial, string telefono, string direccion, DateTime fechaConstitucion) : base(telefono, direccion, fechaConstitucion)
         {
             _razonSocial = razonSocial;
-            _telefono = telefono;
         }
 
         // Atributos
         private readonly string _razonSocial;
-        private readonly string _telefono;
 
         // Propiedades
         private int Antiguedad
@@ -23,7 +21,7 @@ namespace ProyectoAgenda.Servicios.Entities
 
         public override string ToString()
         {
-            return $"Empresa: {_razonSocial} ({Antiguedad} años)\n{_telefono}\n{Direccion}\n";
+            return $"Empresa: {_razonSocial} ({Antiguedad} años)\n{Telefono}\n{Direccion}\n";
         }
     }
 }
