@@ -28,11 +28,17 @@ namespace ProyectoAgenda.InterfazConsola
                 {
                     case 1: // Listar contactos
                     {
+                        if (agenda.Contactos.Count() == 0)
+                        {
+                            InputHelper.PedirContinuacion("La lista de contactos esta vacia.");
+                            break;
+                        }
+
                         Console.WriteLine("Lista de contactos:");
                         int i = 1;
                         foreach (Contacto contacto in agenda.Contactos)
                         {
-                            Console.WriteLine($"{i}- {contacto.ToString()}\n");
+                            Console.WriteLine($"{i}- {contacto}");
                             i++;
                         }
 
@@ -66,13 +72,32 @@ namespace ProyectoAgenda.InterfazConsola
                             break;
                         }
 
-                        string nombre = InputHelper.PedirString("Ingresar nombre:");
-                        string apellido = InputHelper.PedirString("Ingresar apellido:");
-                        string telefono = InputHelper.PedirString("Ingresar telefono:");
-                        string direccion = InputHelper.PedirString("Ingresar direccion:");
-                        DateTime fechaNacimiento = InputHelper.PedirStringFecha("Ingresar fecha de nacimiento:");
+                        Contacto nuevoContacto;
 
-                        Contacto nuevoContacto = new Contacto(nombre, apellido, telefono, direccion, fechaNacimiento);
+                        ContactoTipo contactoTipo =
+                            (ContactoTipo)InputHelper.PedirNumeroNatural(
+                                "Ingresar tipo de contacto (1: Persona, 2: Empresa):", 1, 2
+                            );
+
+                        if (contactoTipo == ContactoTipo.Persona)
+                        {
+                            string nombre = InputHelper.PedirString("Ingresar nombre:");
+                            string apellido = InputHelper.PedirString("Ingresar apellido:");
+                            string telefono = InputHelper.PedirString("Ingresar telefono:");
+                            string direccion = InputHelper.PedirString("Ingresar direccion:");
+                            DateTime fechaNacimiento = InputHelper.PedirStringFecha("Ingresar fecha de nacimiento (dia/mes/ano):");
+
+                            nuevoContacto = new ContactoPersona(nombre, apellido, telefono, direccion, fechaNacimiento);
+                        }
+                        else
+                        {
+                            string razonSocial = InputHelper.PedirString("Ingresar razon social:");
+                            string telefono = InputHelper.PedirString("Ingresar telefono:");
+                            string direccion = InputHelper.PedirString("Ingresar direccion:");
+                            DateTime fechaConstitucion = InputHelper.PedirStringFecha("Ingresar fecha de constitucion (dia/mes/ano):");
+
+                            nuevoContacto = new ContactoEmpresa(razonSocial, telefono, direccion, fechaConstitucion);
+                        }
 
                         try
                         {
@@ -116,7 +141,7 @@ namespace ProyectoAgenda.InterfazConsola
                         {
                             Contacto contacto = agenda.TraerContactoPorPosicion(i);
                             contacto.Llamar();
-                            Console.WriteLine($"Contacto {contacto.Nombre} {contacto.Apellido} llamado");
+                            Console.WriteLine($"Contacto {contacto}llamado");
                         }
                         catch (Exception e)
                         {
@@ -150,5 +175,11 @@ namespace ProyectoAgenda.InterfazConsola
                 }
             } while (opcionMenu != 0);
         }
+    }
+
+    enum ContactoTipo
+    {
+        Persona = 1,
+        Empresa
     }
 }
